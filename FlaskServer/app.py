@@ -46,6 +46,7 @@ def predict() -> str:
                            'may',
                            'failure'
                            ]
+    
     # print(X_cat_from_keyboard)
     le_list = [job_LE,
                marital_LE,
@@ -56,15 +57,14 @@ def predict() -> str:
                contact_LE,
                month_LE,
                poutcome_LE]
-
     X_le_list = [] #под закодированные признаки
     for i in range(len(X_cat_from_keyboard)):
         x_cat = le_list[i].transform([X_cat_from_keyboard[i]])[0]
         # print(x_cat)
         X_le_list.append(x_cat)
     print('X_cat_le:', X_le_list)
-
     ##num
+    
     X_nums_from_keyboard =[30,
                            1787,
                            16,
@@ -73,21 +73,17 @@ def predict() -> str:
                            330,
                            0]
     print('X_nums', X_nums_from_keyboard)
-
     #объединить категориальные и числовые (в том же порядке, как и при обучении)
     X = []
     X.extend(X_le_list)
     X.extend(X_nums_from_keyboard)
     print('X:', X)
-
     #scaler
     X_scaled = num_scaler.transform([X])
     print('X_scaled:', X_scaled)
-
     #predict
     prediction = kNN.predict(X_scaled)
     print(prediction)
-
     #result
     result = y_LE.inverse_transform(prediction)
     return result
