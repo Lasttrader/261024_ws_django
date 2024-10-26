@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-3">
+		<form method="post" enctype="multipart/form-data" action="{% url 'scoring:get_data' %}">
+			{% csrf_token %}
+            <p>{{result}}</p>
+            <br>
+			<div class="panel" style="max-height: 100%;">{{ scoring_form.as_p }}</div>
+			<div id="appendix_0" class="panel" style="max-height: 100%;">
+				<button class="btn btn-primary">Запустить</button>
+			</div>
+		</form>
+    </div>
+</div>
+
+{% endblock %}
