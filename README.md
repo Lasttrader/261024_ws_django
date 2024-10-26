@@ -1,0 +1,2 @@
+# 261024_ws_django
+261024_workshop_django
