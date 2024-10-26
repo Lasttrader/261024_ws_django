@@ -90,11 +90,13 @@ def predict() -> str:
 
     #result
     result = y_LE.inverse_transform(prediction)
-    return result
+    return result[0]
 
 @app.route("/api/v1/get_data/", methods=["GET", "POST"])
 def get_data():
-    return jsonify(str(predict()))
+    result: str = predict()
+
+    return jsonify({'status': result})
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
